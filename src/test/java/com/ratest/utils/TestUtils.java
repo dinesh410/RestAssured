@@ -8,6 +8,12 @@ public class TestUtils {
 	Random random = new Random();
 	int radomInt = random.nextInt(100000);
 	return Integer.toString(radomInt);
+	
 }
+	
+	public static void justAMethod()
+	{
+		
+	}
 
 }

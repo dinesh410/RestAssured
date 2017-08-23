@@ -104,6 +104,7 @@ public class SerenitySteps {
 		List<StudentObject> asList = table.asList(StudentObject.class);
 		for (StudentObject list : asList){	
 		 get_response(list);
+		 System.out.println(list.email);
 			}
 				
 	}

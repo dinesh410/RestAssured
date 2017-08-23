@@ -9,6 +9,7 @@ Scenario: Create a new student & verify if the student is added
       | firstName | lastName | email                                      | programme        | courses |
       | Declan    | Smith    | nnon12.ante.bibendum@risusDonecegestas.edu   | Computer Science | Java    |
       | Mark      | Taylor   | nnon2.ante.bibendum@risusDonecegestas.edu  | Computer Science | Java    |
+      | Mark      | Taylor   | nnon211.ante.bibendum@risusDonecegestas.edu  | Computer Science | Java    |
     #Then I verify that the student with firstname is created
 	# | firstName |
 	# | Declan    |

@@ -35,25 +35,18 @@ public class CucumberSteps {
 		System.out.println("Test passed");
 	}
 
-	@When("^I create a new student by providing the information firstName (.*) lastName (.*) email (.*) programme (.*) courses (.*)$")
+	@When("^I create a new student by providing the information firstName '(.*)' lastName '(.*)' email '(.*)' programme '(.*)' courses '(.*)'$")
 	public void createStudent(String firstName,String lastName,String _email,String programme,String course){
 		List<String> courses = new ArrayList<String>();
 		courses.add(course);
-		email = TestUtils.getRandomValue()+_email;
+		//email = TestUtils.getRandomValue()+_email;
 		
-		System.out.println("The email is "+email);
-		steps.createStudent(firstName, lastName, email, programme, courses)
+		System.out.println("The email is "+_email);
+		steps.createStudent(firstName, lastName, _email, programme, courses)
 		.statusCode(201);
 		
 	}
 
-	@Then("^I verify that the student with (.*) is created$")
-	public void i_verify_that_the_student_with_name_is_created(String emailId){
-		HashMap<String, Object> resVal=  steps.getStudentInfoByFirstName(emailId);
-		
-		System.out.println("The values are : "+resVal);
-		//assertThat(resVal,hasValue(emailId));
-	}
 	
 	//@When("^I create a new student by providing the information firstName, lastName, email, programme and courses$")
 	//public void i_create_a_new_student_by_providing_the_information_firstName_lastName_email_programme(List<StudentObject> students) throws Throwable {
@@ -78,6 +71,28 @@ public class CucumberSteps {
 		//List<StudentObject> asList = table.asList(StudentObject.class);
 
 		
+	}
+	
+	@Then("^I verify that the student with email is created$")
+	public void i_verify_that_the_student_with_name_is_created_datatable(DataTable table){
+		
+		List<StudentObject> asList = table.asList(StudentObject.class);
+		
+		HashMap<String, Object> resVal=  steps.getStudentInfoByEmail(asList.get(0).email);
+		
+		System.out.println("The values are : "+resVal);
+		//assertThat(resVal,hasValue(emailId));
+	}
+	
+	@Then("^I verify that the student with '(.*)' is created$")
+	public void i_verify_that_the_student_with_name_is_created(String email){
+		
+		
+		
+		HashMap<String, Object> resVal=  steps.getStudentInfoByEmail(email);
+		
+		System.out.println("The values are : "+resVal);
+		//assertThat(resVal,hasValue(emailId));
 	}
 
 }

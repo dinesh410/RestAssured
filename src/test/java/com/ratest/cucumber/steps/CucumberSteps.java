@@ -35,14 +35,10 @@ public class CucumberSteps {
 		System.out.println("Test passed");
 	}
 
-	@When("^I create a new student by providing the information firstName (.*) lastName (.*) email (.*) programme (.*) courses (.*)$")
 	public void createStudent(String firstName,String lastName,String _email,String programme,String course){
 		List<String> courses = new ArrayList<String>();
 		courses.add(course);
-		email = TestUtils.getRandomValue()+_email;
 		
-		System.out.println("The email is "+email);
-		steps.createStudent(firstName, lastName, email, programme, courses)
 		.statusCode(201);
 		
 	}

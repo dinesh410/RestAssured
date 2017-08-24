@@ -102,12 +102,12 @@ public class CucumberSteps {
 		HashMap<String, Object> resVal=  steps.getStudentInfoByEmail(email);
 		
 		System.out.println("The values are : "+resVal);
-<<<<<<< HEAD
+
 		//assertThat(resVal,hasValue(email));
 	}
-=======
+
 		//assertThat(resVal,hasValue(emailId));
 	}*/
->>>>>>> origin/master
+
 
 }

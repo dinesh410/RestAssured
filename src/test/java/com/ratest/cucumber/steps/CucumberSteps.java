@@ -48,8 +48,8 @@ public class CucumberSteps {
 	}
 
 	@Then("^I verify that the student with (.*) is created$")
-	public void i_verify_that_the_student_with_name_is_created(String emailId){
-		HashMap<String, Object> resVal=  steps.getStudentInfoByFirstName(emailId);
+	public void i_verify_that_the_student_with_name_is_created(String firstName){
+		HashMap<String, Object> resVal=  steps.getStudentInfoByFirstName(firstName);
 		
 		System.out.println("The values are : "+resVal);
 		//assertThat(resVal,hasValue(emailId));

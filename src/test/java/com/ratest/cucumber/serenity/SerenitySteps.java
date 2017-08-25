@@ -35,20 +35,22 @@ public class SerenitySteps {
 				
 	}
 	
-	@Step("Getting the student information with firstName: {0}")
+	@Step("Getting the student information with email: {0}")
 	public HashMap<String,Object> getStudentInfoByEmail(String email){
 		String p1 = "findAll{it.email=='";
 		String p2 = "'}.get(0)";
 		
-	return	SerenityRest.rest().given()
-		.when()
-		.get("/list")
-		.then()
-		.log()
-		.all()
-		.statusCode(200)
-		.extract()
-		.path(p1+email+p2);
+		HashMap<String,Object> value = SerenityRest.rest().given()
+				.when()
+				.get("/list")
+				.then()
+				.log()
+				.all()
+				.statusCode(200)
+				.extract()
+				.path(p1+email+p2);
+		
+		return	value;
 	}
 	
 	@Step("Updating student information with studnetID: {0} firstName:{1}, lastName:{2}, email:{3},programme: {4} ,courses:{5}")

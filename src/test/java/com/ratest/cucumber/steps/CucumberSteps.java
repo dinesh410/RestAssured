@@ -91,10 +91,7 @@ public class CucumberSteps {
 		HashMap<String, Object> resVal=  steps.getStudentInfoByEmail(asList.get(0).email);
 		
 		System.out.println("The values are : "+resVal);
-		//assertThat(resVal,hasValue(emailId));
-		//Branch4
-		//Master added email and trying to commit and push
-		//Branch4 added email and trying to commit and push
+		//assertThat(resVal,hasValue(emailId));		
 	}
 	
 	/*@Then("^I verify that the student with '(.*)' is created$")

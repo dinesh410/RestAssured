@@ -47,6 +47,16 @@ public class CucumberSteps {
 		
 	}
 
+
+	@Then("^I verify that the student with (.*) is created$")
+	public void i_verify_that_the_student_with_name_is_created(String email){
+		HashMap<String, Object> resVal=  steps.getStudentInfoByEmail(email);
+		
+		System.out.println("The values are : "+resVal);
+		//assertThat(resVal,hasValue(emailId));
+	}
+
+
 	
 	//@When("^I create a new student by providing the information firstName, lastName, email, programme and courses$")
 	//public void i_create_a_new_student_by_providing_the_information_firstName_lastName_email_programme(List<StudentObject> students) throws Throwable {
@@ -84,7 +94,7 @@ public class CucumberSteps {
 		//assertThat(resVal,hasValue(emailId));
 	}
 	
-	@Then("^I verify that the student with '(.*)' is created$")
+	/*@Then("^I verify that the student with '(.*)' is created$")
 	public void i_verify_that_the_student_with_name_is_created(String email){
 		
 		
@@ -92,7 +102,12 @@ public class CucumberSteps {
 		HashMap<String, Object> resVal=  steps.getStudentInfoByEmail(email);
 		
 		System.out.println("The values are : "+resVal);
+
 		//assertThat(resVal,hasValue(email));
 	}
+
+		//assertThat(resVal,hasValue(emailId));
+	}*/
+
 
 }

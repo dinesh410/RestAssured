@@ -94,6 +94,7 @@ public class CucumberSteps {
 		//assertThat(resVal,hasValue(emailId));
 		//Branch4
 		//Master added email and trying to commit and push
+		//Branch4 added email and trying to commit and push
 	}
 	
 	/*@Then("^I verify that the student with '(.*)' is created$")

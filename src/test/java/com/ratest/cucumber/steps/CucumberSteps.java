@@ -4,13 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import com.ratest.cucumber.serenity.SerenitySteps;
-
 import com.ratest.utils.TestUtils;
 import com.ratests.model.StudentClass;
 import com.ratests.model.StudentObject;
-
 import cucumber.api.DataTable;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -54,28 +51,12 @@ public class CucumberSteps {
 		
 		System.out.println("The values are : "+resVal);
 		//assertThat(resVal,hasValue(emailId));
-	}
-
-
+	}	
 	
-	//@When("^I create a new student by providing the information firstName, lastName, email, programme and courses$")
-	//public void i_create_a_new_student_by_providing_the_information_firstName_lastName_email_programme(List<StudentObject> students) throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    // For automatic transformation, change DataTable to one of
-	    // List<YourType>, List<List<E>>, List<Map<K,V>> or Map<K,V>.
-	    // E,K,V must be a scalar (String, Integer, Date, enum etc)
-	    
-	//		StudentObject student = students.get(0);
-		
-	//		steps.createStudentFromTable(student);
-	//}
 	
-	@When("^I create a new student by providing the information firstName, lastName, email, programme and courses$")
-	public void i_create_a_new_student_by_providing_the_information_firstName_lastName_email_programme(DataTable table) throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    // For automatic transformation, change DataTable to one of
-	    // List<YourType>, List<List<E>>, List<Map<K,V>> or Map<K,V>.
-	    // E,K,V must be a scalar (String, Integer, Date, enum etc)
+	@When("^I create a new student by providing the below information in datatable$")
+	public void i_create_a_new_student_by_providing_the_below_information_in_datatable(DataTable table) throws Throwable {
+	 
 		steps.createStudentFromDataTable(table);
 		
 		//List<StudentObject> asList = table.asList(StudentObject.class);
@@ -83,34 +64,28 @@ public class CucumberSteps {
 		
 	}
 	
-	@Then("^I verify that the student with email is created$")
-	public void i_verify_that_the_student_with_name_is_created_datatable(DataTable table){
+	@Then("^I verify that the student is created with below email in datatable$")
+	public void i_verify_that_the_student_is_created_with_below_email_in_datatable(DataTable table){
 		
 		List<StudentObject> asList = table.asList(StudentObject.class);
 		
 		HashMap<String, Object> resVal=  steps.getStudentInfoByEmail(asList.get(0).email);
 		
 		System.out.println("The values are : "+resVal);
-		//assertThat(resVal,hasValue(emailId));
-		//Branch4
-		//Master added email and trying to commit and push
-		//Branch4 added email and trying to commit and push
+		
 	}
 	
-	/*@Then("^I verify that the student with '(.*)' is created$")
-	public void i_verify_that_the_student_with_name_is_created(String email){
-		
-		
-		
-		HashMap<String, Object> resVal=  steps.getStudentInfoByEmail(email);
-		
-		System.out.println("The values are : "+resVal);
-
-		//assertThat(resVal,hasValue(email));
+	
+	
+	@When("^I update an existing student by providing the information firstName, lastName, email, programme and courses$")
+	public void i_update_an_existing_student_by_providing_the_information_firstName_lastName_email_programme_and_courses(DataTable arg1) throws Throwable {
+	  
 	}
-		
-		//assertThat(resVal,hasValue(emailId));
-	}*/
+
+	@Then("^I verify that the student with email is updated$")
+	public void i_verify_that_the_student_with_email_is_updated(DataTable arg1) throws Throwable {
+	   
+	}
 
 
 }

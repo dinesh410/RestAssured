@@ -1,2 +1,3 @@
+com\ratests\model\StudentObject.class
 SerenityBDD\RestAssured\App.class
 com\ratests\model\StudentClass.class

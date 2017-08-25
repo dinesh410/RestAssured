@@ -1,4 +1,4 @@
 "Story","Title","Result","Date","Stability","Duration (s)"
-"Testing different requests on the student application","Check if the student application can be accessed by users","SUCCESS","2017-08-16T16:46:16.065+01:00[Europe/London]","0.0","2.44"
-"Testing different requests on the student application in diffrenet feature file","Check if the student application can be accessed by users","SUCCESS","2017-08-16T16:46:19.475+01:00[Europe/London]","0.0","0.05"
-"Testing different requests on the student application in diffrenet feature file","Create a new student & verify if the student is added","SUCCESS","2017-08-16T16:46:19.565+01:00[Europe/London]","0.0","0.93"
+"Testing different requests on the student application","Check if the student application can be accessed by users","SUCCESS","2017-08-21T14:12:05.473+01:00[Europe/London]","0.0","3.18"
+"Testing different requests on the student application","Create a new student & verify if the student is added","SUCCESS","2017-08-21T14:12:09.803+01:00[Europe/London]","0.0","0.73"
+"Testing different requests on the student application in diffrenet feature file","Check if the student application can be accessed by users","SUCCESS","2017-08-21T14:12:10.590+01:00[Europe/London]","0.0","0.06"

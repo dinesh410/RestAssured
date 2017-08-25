@@ -1,1 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="0" name="Testing different requests on the student application" skipped="1" tests="1" time="0.17" timestamp="2017-08-18T10:17:02.077+01:00[Europe/London]"><testcase name="Create a new student &amp; verify if the student is added"><skipped/></testcase></testsuite>

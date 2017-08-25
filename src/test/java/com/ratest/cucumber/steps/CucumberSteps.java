@@ -93,7 +93,7 @@ public class CucumberSteps {
 		System.out.println("The values are : "+resVal);
 		//assertThat(resVal,hasValue(emailId));
 		//Branch4
-		//Master added email and trying to commit
+		//Master added email and trying to commit and push
 	}
 	
 	/*@Then("^I verify that the student with '(.*)' is created$")

@@ -79,6 +79,7 @@ public class CucumberSteps {
 		
 		System.out.println("The values are : "+resVal);
 		
+		//assertThat(resVal,hasValue(emailId));		
 	}
 	
 	

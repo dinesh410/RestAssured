@@ -12,8 +12,8 @@ Scenario: Create a new student & verify if the student is added
 	Then I verify that the student is created with below email in datatable
 		| email |
 		| nnon12.ante.bibendum@risusDonecegestas.edu   |
-		| nnon2.ante.bibendum@risusDonecegestas.edu    |	
-		
+		| nnon2.ante.bibendum@risusDonecegestas.edu    |
+				
 
 Scenario: Update an existing student & verify if the student is updated 
 	When I update an existing student by providing the information firstName, lastName, email, programme and courses 
@@ -21,8 +21,8 @@ Scenario: Update an existing student & verify if the student is updated
 		| DeclanEdit | Smith    | nnon12.ante.bibendum@risusDonecegestas.edu   | Computer Science | Java    |		
 	Then I verify that the student with email is updated 
 		| email |
-		| nnon12.ante.bibendum@risusDonecegestas.edu  |
-		
+		| nnon12.ante.bibendum@risusDonecegestas.edu  |		
+
 
 		
 		

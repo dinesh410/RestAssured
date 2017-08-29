@@ -12,6 +12,12 @@ import cucumber.api.DataTable;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import io.restassured.http.ContentType;
+import net.serenitybdd.core.Serenity;
+
+import org.junit.Assert;
+import org.junit.Assert.*;
+import org.hamcrest.Matchers.*;
 //import groovy.ui.SystemOutputInterceptor;
 import net.serenitybdd.rest.SerenityRest;
 import net.thucydides.core.annotations.Steps;
@@ -36,10 +42,10 @@ public class CucumberSteps {
 	public void createStudent(String firstName,String lastName,String _email,String programme,String course){
 		List<String> courses = new ArrayList<String>();
 		courses.add(course);
-		//email = TestUtils.getRandomValue()+_email;
+		email = TestUtils.getRandomValue()+_email;
 		
 		System.out.println("The email is "+_email);
-		steps.createStudent(firstName, lastName, _email, programme, courses)
+		steps.createStudent(firstName, lastName, email, programme, courses)
 		.statusCode(201);
 		
 	}
@@ -78,12 +84,29 @@ public class CucumberSteps {
 	
 	
 	@When("^I update an existing student by providing the information firstName, lastName, email, programme and courses$")
-	public void i_update_an_existing_student_by_providing_the_information_firstName_lastName_email_programme_and_courses(DataTable arg1) throws Throwable {
+	public void i_update_an_existing_student_by_providing_the_information_firstName_lastName_email_programme_and_courses(DataTable table) throws Throwable {
 	  
+		List<StudentObject> asList = table.asList(StudentObject.class);
+		//Serenity.getCurrentSession().put("studentList", asList);
+		Serenity.setSessionVariable("studList").to(asList);
+		HashMap<String, Object> resVal=  steps.getStudentInfoByEmail(asList.get(0).email);
+		int studentId = (int) resVal.get("id");
+		System.out.println("Student id is: " + studentId);		
+		steps.updateStudent(asList.get(0).firstName, asList.get(0).lastName,  asList.get(0).email, asList.get(0).programme, asList.get(0).courses ,studentId);
+		
 	}
 
+	@SuppressWarnings("unchecked")
 	@Then("^I verify that the student with email is updated$")
-	public void i_verify_that_the_student_with_email_is_updated(DataTable arg1) throws Throwable {
+	public void i_verify_that_the_student_with_email_is_updated(DataTable table) throws Throwable {
+		
+        List<StudentObject> asList = table.asList(StudentObject.class);
+		
+		HashMap<String, Object> resVal=  steps.getStudentInfoByEmail(asList.get(0).email);
+		
+		//List<StudentObject> studList = (List<StudentObject>) Serenity.getCurrentSession().get("studentList");
+		List<StudentObject> studList = (List<StudentObject>) Serenity.sessionVariableCalled("studList");
+		Assert.assertTrue("Firstname is not updated", resVal.get("firstName").equals(studList.get(0).firstName));
 	   
 	}
 

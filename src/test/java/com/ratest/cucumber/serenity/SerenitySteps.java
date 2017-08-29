@@ -35,11 +35,32 @@ public class SerenitySteps {
 				
 	}
 	
+	@Step("Updating student with firstName:{0}, lastName:{1}, email:{2},programme{3} ,courses:{4}")
+	public ValidatableResponse updateStudent(String firstName,String lastName, String email, String programme,
+			List<String> courses , int studentId){
+		
+		StudentClass student = new StudentClass();
+		student.setFirstName(firstName);
+		student.setLastName(lastName);
+		student.setEmail(email);
+		student.setProgramme(programme);
+		student.setCourses(courses);
+	
+		System.out.println("Student id is: " + studentId);
+	return	SerenityRest.rest().given()
+		.spec(ReusableSpecifications.getGenericRequestSpec())
+		.when()
+		.body(student)
+		.put("/" + studentId)
+		.then();
+				
+	}
+	
 	@Step("Getting the student information with email: {0}")
 	public HashMap<String,Object> getStudentInfoByEmail(String email){
 		String p1 = "findAll{it.email=='";
 		String p2 = "'}.get(0)";
-		
+		System.out.println("email : " + p1+email+p2);
 		HashMap<String,Object> value = SerenityRest.rest().given()
 				.when()
 				.get("/list")
@@ -49,7 +70,7 @@ public class SerenitySteps {
 				.statusCode(200)
 				.extract()
 				.path(p1+email+p2);
-		
+				
 		return	value;
 	}
 	

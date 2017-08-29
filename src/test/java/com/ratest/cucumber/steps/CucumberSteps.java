@@ -72,7 +72,7 @@ public class CucumberSteps {
 		HashMap<String, Object> resVal=  steps.getStudentInfoByEmail(asList.get(0).email);
 		
 		System.out.println("The values are : "+resVal);
-		
+		//assertThat(resVal,hasValue(emailId));		
 	}
 	
 	

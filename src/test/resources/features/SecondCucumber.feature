@@ -1,4 +1,4 @@
-Feature: Testing different requests on the student application in diffrenet feature file
+Feature: SecondCucumber.feature
 
 
 @smoke
@@ -9,8 +9,8 @@ Scenario: Check if the student application can be accessed by users
 	    When I create a new student by providing the information firstName '<firstName>' lastName '<lastName>' email '<email>' programme '<programme>' courses '<courses>'
 	    Then I verify that the student with '<email>' is created	
 	    Examples: 
-	      | firstName | lastName | email                                       | programme        | courses |
-	      | Declan    | Smith    | nnon123.ante.bibendum@risusDonecegestas.edu | Computer Science | Java    |
-	      | Mark      | Taylor   | nnon124.ante.bibendum@risusDonecegestas.edu | Computer Science | Java    |
+	      | firstName | lastName | email                           | programme        | courses |
+	      | Declan    | Smith    | personoyuu@risusDonecegestas.edu | Computer Science | Java    |
+	      | Mark      | Taylor   | personrterteo@risusDonecegestas.edu | Computer Science | Java    |
       
   

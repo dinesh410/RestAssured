@@ -22,6 +22,14 @@ Scenario: Update an existing student & verify if the student is updated
 	Then I verify that the student with email is updated 
 		| email |
 		| nnon12.ante.bibendum@risusDonecegestas.edu  |		
+		
+Scenario: Delete an existing student & verify if the student is deleted 
+	When I delete an existing student by providing the information firstName, lastName, email, programme and courses 
+		| firstName  | lastName | email                                        | programme        | courses |
+		| DeclanEdit | Smith    | nnon12.ante.bibendum@risusDonecegestas.edu   | Computer Science | Java    |		
+	Then I verify that the student with email is deleted 
+		| email |
+		| nnon12.ante.bibendum@risusDonecegestas.edu  |			
 
 
 		

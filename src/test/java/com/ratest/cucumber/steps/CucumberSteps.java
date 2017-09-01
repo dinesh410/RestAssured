@@ -110,6 +110,17 @@ public class CucumberSteps {
 		Assert.assertTrue("Firstname is not updated", resVal.get("firstName").equals(studList.get(0).firstName));
 	   
 	}
+	
+	@When("^I delete an existing student by providing the information firstName, lastName, email, programme and courses$")
+	public void i_delete_an_existing_student_by_providing_the_information_firstName_lastName_email_programme_and_courses(DataTable arg1) throws Throwable {
+	   
+	}
+
+	@Then("^I verify that the student with email is deleted$")
+	public void i_verify_that_the_student_with_email_is_deleted(DataTable arg1) throws Throwable {
+	   
+	}
+
 
 
 }

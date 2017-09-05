@@ -9,6 +9,8 @@ import com.ratests.model.StudentClass;
 import com.ratests.model.StudentObject;
 
 import cucumber.api.DataTable;
+import groovy.ui.SystemOutputInterceptor;
+import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 import net.serenitybdd.rest.SerenityRest;
 import net.thucydides.core.annotations.Step;
@@ -60,21 +62,46 @@ public class SerenitySteps {
 	public HashMap<String,Object> getStudentInfoByEmail(String email){
 		String p1 = "findAll{it.email=='";
 		String p2 = "'}.get(0)";
-		System.out.println("email : " + p1+email+p2);
+		System.out.println("jsonpath for email : " + p1+email+p2);
 		HashMap<String,Object> value = SerenityRest.rest().given()
 				.when()
 				.get("/list")
 				.then()
-				.log()
-				.all()
 				.statusCode(200)
 				.extract()
 				.path(p1+email+p2);
-				
+		System.out.println("Value to print :" + value.toString());
+				System.out.println("Before return from getStduent");
 		return	value;
 	}
 	
-	@Step("Updating student information with studnetID: {0} firstName:{1}, lastName:{2}, email:{3},programme: {4} ,courses:{5}")
+	public HashMap<String,Object> getStudentInfoByStudentEmail(String email){
+		HashMap<String,Object> value = null;
+		String p1 = "findAll{it.email=='";
+		String p2 = "'}.get(0)";
+		System.out.println("jsonpath for email : " + p1+email+p2);
+		try
+		{
+		Response resp = SerenityRest.rest().given()				
+				.when()
+				.get("/list");
+		System.out.println("Content type: " + resp.contentType() + "Body: " + resp.prettyPrint());
+		value = resp
+				.then()				
+				.extract()
+				.path(p1+email+p2);
+		System.out.println("Value to print :" + value.toString());
+		}
+		catch(Exception e)
+		{
+			System.out.println("Exception caught" + e.getMessage());
+		}
+		
+				System.out.println("Before return from getStduent");
+		return	value;
+	}
+	
+	/*@Step("Updating student information with studnetID: {0} firstName:{1}, lastName:{2}, email:{3},programme: {4} ,courses:{5}")
 	public  ValidatableResponse updateStudent(int studentid, String firstName,
 			String lastName, String email, String programme,
 			List<String> courses) {
@@ -89,7 +116,7 @@ public class SerenitySteps {
 		return SerenityRest.rest().given()
 				.spec(ReusableSpecifications.getGenericRequestSpec()).log().all()
 				.when().body(student).put("/" + studentid).then();
-	}
+	}*/
 	
 	@Step("Deleting student information with ID: {0}")
 	public  void deleteStudent(int studentId) {
@@ -128,6 +155,15 @@ public class SerenitySteps {
 		for (StudentObject list : asList){	
 		 get_response(list);
 			}
+				
+	}
+	
+	@Step("Creating student with firstName, lastName, email,programme ,courses")
+	public ValidatableResponse createSingleStudentAndGetStudentId(DataTable table){
+		
+		List<StudentObject> asList = table.asList(StudentObject.class);			
+		return get_response(asList.get(0));
+			
 				
 	}
 

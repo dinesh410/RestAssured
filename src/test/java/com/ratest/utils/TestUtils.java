@@ -10,10 +10,5 @@ public class TestUtils {
 	return Integer.toString(radomInt);
 	
 }
-	
-	public static void justAMethod()
-	{
-		
-	}
 
 }

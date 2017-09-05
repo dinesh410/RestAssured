@@ -13,6 +13,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import io.restassured.http.ContentType;
+import io.restassured.response.ValidatableResponse;
 import net.serenitybdd.core.Serenity;
 
 import org.junit.Assert;
@@ -63,11 +64,20 @@ public class CucumberSteps {
 	@When("^I create a new student by providing the below information in datatable$")
 	public void i_create_a_new_student_by_providing_the_below_information_in_datatable(DataTable table) throws Throwable {
 	 
-		steps.createStudentFromDataTable(table);
+        steps.createStudentFromDataTable(table);
 		
 		//List<StudentObject> asList = table.asList(StudentObject.class);
 
 		
+	}
+	
+	@Given("^I have a student with the below details$")
+	public void i_have_a_student_with_the_below_details(DataTable table) throws Throwable {	 
+		
+		List<StudentObject> asList = table.asList(StudentObject.class);
+		ValidatableResponse resp = steps.createSingleStudentAndGetStudentId(table);
+		HashMap<String,Object> studValue = steps.getStudentInfoByEmail(asList.get(0).email);
+		Serenity.setSessionVariable("studentId").to((Integer)studValue.get("id"));
 	}
 	
 	@Then("^I verify that the student is created with below email in datatable$")
@@ -87,8 +97,7 @@ public class CucumberSteps {
 	@When("^I update an existing student by providing the information firstName, lastName, email, programme and courses$")
 	public void i_update_an_existing_student_by_providing_the_information_firstName_lastName_email_programme_and_courses(DataTable table) throws Throwable {
 	  
-		List<StudentObject> asList = table.asList(StudentObject.class);
-		//Serenity.getCurrentSession().put("studentList", asList);
+		List<StudentObject> asList = table.asList(StudentObject.class);		
 		Serenity.setSessionVariable("studList").to(asList);
 		HashMap<String, Object> resVal=  steps.getStudentInfoByEmail(asList.get(0).email);
 		int studentId = (int) resVal.get("id");
@@ -101,23 +110,27 @@ public class CucumberSteps {
 	@Then("^I verify that the student with email is updated$")
 	public void i_verify_that_the_student_with_email_is_updated(DataTable table) throws Throwable {
 		
-        List<StudentObject> asList = table.asList(StudentObject.class);
-		
-		HashMap<String, Object> resVal=  steps.getStudentInfoByEmail(asList.get(0).email);
-		
-		//List<StudentObject> studList = (List<StudentObject>) Serenity.getCurrentSession().get("studentList");
+        List<StudentObject> asList = table.asList(StudentObject.class);		
+		HashMap<String, Object> resVal=  steps.getStudentInfoByEmail(asList.get(0).email);			
 		List<StudentObject> studList = (List<StudentObject>) Serenity.sessionVariableCalled("studList");
 		Assert.assertTrue("Firstname is not updated", resVal.get("firstName").equals(studList.get(0).firstName));
 	   
 	}
 	
-	@When("^I delete an existing student by providing the information firstName, lastName, email, programme and courses$")
-	public void i_delete_an_existing_student_by_providing_the_information_firstName_lastName_email_programme_and_courses(DataTable arg1) throws Throwable {
-	   
+	@When("^I delete the student$")	
+	public void i_delete_the_student() throws Throwable {	   
+		
+		int studentId = (Integer)Serenity.sessionVariableCalled("studentId");
+		System.out.println("Student id is: " + studentId);
+		steps.deleteStudent(studentId);
+		
 	}
 
 	@Then("^I verify that the student with email is deleted$")
-	public void i_verify_that_the_student_with_email_is_deleted(DataTable arg1) throws Throwable {
+	public void i_verify_that_the_student_with_email_is_deleted() throws Throwable {
+		
+		ValidatableResponse response= steps.getStudentById((Integer)Serenity.sessionVariableCalled("studentId"));
+		response.assertThat().statusCode(404);		
 	   
 	}
 

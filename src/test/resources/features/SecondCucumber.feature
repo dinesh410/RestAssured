@@ -21,11 +21,10 @@ Scenario: Update an existing student & verify if the student is updated
 		| email |
 		| nnon12.ante.bibendum@risusDonecegestas.edu  |		
 		
-@wip
+@inprogress
 Scenario: Delete an existing student & verify if the student is deleted 
-	When I delete an existing student by providing the information firstName, lastName, email, programme and courses 
-		| firstName  | lastName | email                                        | programme        | courses |
-		| DeclanEdit | Smith    | nnon12.ante.bibendum@risusDonecegestas.edu   | Computer Science | Java    |		
-	Then I verify that the student with email is deleted 
-		| email |
-		| nnon12.ante.bibendum@risusDonecegestas.edu  |			
+    Given I have a student with the below details    
+		| firstName  | lastName      | email                   | programme           | courses           |
+		| Devika     | Velayudhan    | dvelayudhan2@gmail.com   | Conmputer Science   | Java              |		
+	When I delete the student 	
+	Then I verify that the student with email is deleted 			

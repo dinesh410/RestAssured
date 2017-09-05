@@ -1,6 +1,0 @@
-com\ratest\testbase\TestBase.class
-com\ratest\utils\TestUtils.class
-com\ratest\utils\ReusableSpecifications.class
-com\ratest\cucumber\steps\CucumberSteps.class
-com\ratest\cucumber\StudentRunner.class
-com\ratest\cucumber\serenity\SerenitySteps.class

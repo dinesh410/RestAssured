@@ -1,3 +1,0 @@
-"Story","Title","Result","Date","Stability","Duration (s)"
-"Testing different requests on the student application","Check if the student application can be accessed by users","SUCCESS","2017-08-21T14:12:05.473+01:00[Europe/London]","0.0","3.18"
-"Testing different requests on the student application","Create a new student & verify if the student is added","SUCCESS","2017-08-21T14:12:09.803+01:00[Europe/London]","0.0","0.73"

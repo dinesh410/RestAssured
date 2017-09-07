@@ -1,4 +1,4 @@
-Feature: FirstCucumber
+Feature: Create a student
 
 
 Scenario: Check if the student application can be accessed by users 

@@ -1,4 +1,4 @@
-Feature: SecondCucumber.feature
+Feature: Update and delete students
 
 #@smoke
 #Scenario: Check if the student application can be accessed by users
